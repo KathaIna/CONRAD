@@ -3,23 +3,23 @@ package edu.stanford.rsl.tutorial.dmip;
 import edu.stanford.rsl.conrad.data.numeric.Grid2D;
 import edu.stanford.rsl.conrad.numerics.DecompositionSVD;
 import edu.stanford.rsl.conrad.numerics.SimpleMatrix;
-import edu.stanford.rsl.conrad.numerics.SimpleMatrix.InversionType;
+//import edu.stanford.rsl.conrad.numerics.SimpleMatrix.InversionType;
 import edu.stanford.rsl.conrad.numerics.SimpleMatrix.MatrixNormType;
 import edu.stanford.rsl.conrad.numerics.SimpleVector.VectorNormType;
 import edu.stanford.rsl.conrad.utils.ImageUtil;
 import edu.stanford.rsl.conrad.utils.VisualizationUtil;
 import edu.stanford.rsl.conrad.numerics.SimpleOperators;
 import edu.stanford.rsl.conrad.numerics.SimpleVector;
-import edu.stanford.rsl.conrad.data.numeric.NumericGrid;
-import edu.stanford.rsl.tutorial.noncircularfov.EllipseGrid2D;
+//import edu.stanford.rsl.conrad.data.numeric.NumericGrid;
+//import edu.stanford.rsl.tutorial.noncircularfov.EllipseGrid2D;
 import ij.IJ;
 import ij.ImageJ;
 import ij.plugin.filter.Convolver;
 import ij.process.FloatProcessor;
 
-import java.awt.geom.Ellipse2D;
-import java.util.*;
-import java.awt.Graphics2D;
+//import java.awt.geom.Ellipse2D;
+//import java.util.*;
+//import java.awt.Graphics2D;
 
 /**
  * Introduction to the CONRAD Framework
@@ -90,8 +90,7 @@ public class Intro {
 		
 		//write an image to disk, check the supported output formats
 		String outFilename ="/proj/ciptmp/ep52afir/DMIPEX/CONRAD/src/edu/stanford/rsl/tutorial/dmip/mr12out.tif";
-		//IJ.save(ImageUtil.wrapGrid(wrapGrid2D(mrImage), outFilename));
-		//IJ.save(ImageUtil.wrapGrid2D(ip));
+		IJ.save(ImageUtil.wrapGrid(image, null),outFilename);
 	}
 	
 	
