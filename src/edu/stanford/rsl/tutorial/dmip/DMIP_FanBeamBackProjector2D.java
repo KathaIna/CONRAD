@@ -172,8 +172,9 @@ public class DMIP_FanBeamBackProjector2D {
 		//Create 1D kernel (identical for each projection)
 		Grid1D cosineKernel = new Grid1D(detectorPixels);
 		for(int i=0; i<detectorPixels; ++i){
-			//TODO
-			cosineKernel.setAtIndex(i, 9999);//TODO
+			double t=i*detectorSpacing - detectorLength/2+ 0.5*detectorSpacing;
+			cosineKernel.setAtIndex(i, (float)(focalLength/Math.sqrt(focalLength*focalLength+t*t)));
+			
 		}
 		
 		//apply cosine weights to each projection
@@ -221,7 +222,8 @@ public class DMIP_FanBeamBackProjector2D {
 
 				// implement the conditions as described in Parker's paper
 				if (beta <= 2 * (delta - gamma)) {
-					float val = 0; //TODO
+					double tmp=beta *Math.PI /4.d/(delta-gamma);
+					float val = (float) Math.pow(Math.sin(tmp),2.d);
 					if (Double.isNaN(val)){
 						continue;
 					}
@@ -231,7 +233,10 @@ public class DMIP_FanBeamBackProjector2D {
 					parker.setAtIndex(t, b , 1);
 				}
 				else if (beta <= (Math.PI + 2.d * delta) + 1e-12) {
-					float val = 0;//TODO
+					
+					double tmp=(Math.PI /4.d)*((Math.PI + 2.d*delta-beta)/(delta+gamma));
+					
+					float val = (float) Math.pow(Math.sin(tmp),2.d);
 					if (Double.isNaN(val)){
 						continue;
 					}
@@ -264,7 +269,7 @@ public class DMIP_FanBeamBackProjector2D {
 		DMIP_FanBeamBackProjector2D fbp = new DMIP_FanBeamBackProjector2D();
 
 		//Load and visualize the projection image data
-		String filename = "D:/02_lectures/DMIP/exercises/2014/6/Sinogram0.tif";
+		String filename = "/proj/i5dmip/bi24kuwe/Reconstruction/CONRAD/src/edu/stanford/rsl/tutorial/dmip/Sinogram0.tif";
 		Grid2D sino = ImageUtil.wrapImagePlus(IJ.openImage(filename)).getSubGrid(0);
 		sino.show("Sinogram");
 		
@@ -325,5 +330,3 @@ public class DMIP_FanBeamBackProjector2D {
 	
 	}
 }
-
-
